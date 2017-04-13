@@ -1,0 +1,44 @@
+#!/bin/bash
+
+## Variables that it tries to fetch:
+# $ssh_credentials_server
+# $ssh_credentials_user
+# $ssh_credentials_password
+
+## Function definitions
+
+# Generic function to ask informations, not accepting empty ones.
+ask_ssh_global() {
+
+    if [ $1 = n ]; then
+        read -p "$2" $3
+    elif [ $1 = h ]; then
+        read -s -p "$2" $3
+        echo ""
+    fi
+
+    var_to_eval=${!3}
+    if [ ${#var_to_eval} -eq 0 ]; then
+        echo "$4"
+        ask_ssh_global $1 "$2" $3 "$4"
+        return
+    fi
+}
+
+
+## Usage
+
+# Asks for ssh address, if not available
+if [ -z $ssh_credentials_server ]; then
+    ask_ssh_global n "Please, provides the ssh server address: " ssh_credentials_server "You did not provided the ssh address!"
+fi
+
+# Asks for ssh user, if not available
+if [ -z $ssh_credentials_user ]; then
+    ask_ssh_global n "Please, provides the ssh server user: " ssh_credentials_user "You did not provided the ssh user!"
+fi
+
+# Asks for ssh password, if not available
+if [ -z $ssh_credentials_password ]; then
+    ask_ssh_global h "Please, provides the ssh server user password: " ssh_credentials_password "You did not provided the ssh user password!"
+fi

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ask_mysql_version=1
+
 ## Variables that it tries to fetch:
 # $ssh_credentials_server
 # $ssh_credentials_user
@@ -26,19 +28,21 @@ ask_ssh_global() {
 }
 
 
-## Usage
+## Main function
 
-# Asks for ssh address, if not available
-if [ -z $ssh_credentials_server ]; then
-    ask_ssh_global n "Please, provides the ssh server address: " ssh_credentials_server "You did not provided the ssh address!"
-fi
+do_ask_mysql() {
+    # Asks for ssh address, if not available
+    if [ -z $ssh_credentials_server ]; then
+        ask_ssh_global n "Please, provides the ssh server address: " ssh_credentials_server "You did not provided the ssh address!"
+    fi
 
-# Asks for ssh user, if not available
-if [ -z $ssh_credentials_user ]; then
-    ask_ssh_global n "Please, provides the ssh server user: " ssh_credentials_user "You did not provided the ssh user!"
-fi
+    # Asks for ssh user, if not available
+    if [ -z $ssh_credentials_user ]; then
+        ask_ssh_global n "Please, provides the ssh server user: " ssh_credentials_user "You did not provided the ssh user!"
+    fi
 
-# Asks for ssh password, if not available
-if [ -z $ssh_credentials_password ]; then
-    ask_ssh_global h "Please, provides the ssh server user password: " ssh_credentials_password "You did not provided the ssh user password!"
-fi
+    # Asks for ssh password, if not available
+    if [ -z $ssh_credentials_password ]; then
+        ask_ssh_global h "Please, provides the ssh server user password: " ssh_credentials_password "You did not provided the ssh user password!"
+    fi
+}

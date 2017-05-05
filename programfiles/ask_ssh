@@ -31,7 +31,7 @@ ask_ssh_global() {
 
 ## Main function
 
-do_ask_mysql() {
+do_ask_ssh() {
     # Asks for ssh address, if not available
     if [ -z $ssh_credentials_server ]; then
         ask_ssh_global n "Please, provides the ssh server address: " ssh_credentials_server "You did not provided the ssh address!"

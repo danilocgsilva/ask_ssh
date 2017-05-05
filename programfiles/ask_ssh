@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ask_mysql_version=1
-ask_mysql_source=https://raw.githubusercontent.com/danilocgsilva/ask_ssh/master/programfiles/ask_ssh
+ask_ssh_version=1
+ask_ssh_source=https://raw.githubusercontent.com/danilocgsilva/ask_ssh/master/programfiles/ask_ssh
 
 ## Variables that it tries to fetch:
 # $ssh_credentials_server
